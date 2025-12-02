@@ -50,7 +50,7 @@ a {
 .navbar {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
     padding: 15px 0;
-    background-color: var(--background-darker) !important;
+    background-color: transparent;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -548,13 +548,22 @@ section {
     background-color: rgba(0, 0, 0, 0.1);
     border-top: 1px solid var(--border-color);
     padding: 1.25rem 1.75rem;
+    
 }
 
 .card-img-top {
     height: 200px;
     object-fit: cover;
 }
-
+.navbar{
+    transition: all 0.3s ease;
+    height: 70px !important;
+    border-bottom:  0px solid transparent !important;
+}
+.visible-navbar{
+    background-color: rgba(0, 0, 0, 0.877);
+    backdrop-filter: saturate(180%) blur(20px);
+}
 /* Icon Box */
 .icon-box {
     width: 80px;

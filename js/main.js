@@ -1,8 +1,15 @@
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+        navbar.classList.add('visible-navbar');
+    } else {
+        navbar.classList.remove('visible-navbar');
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Back to Top Button
     const backToTopButton = document.getElementById('backToTop');
-    
-    // Show/Hide back to top button on scroll
     window.addEventListener('scroll', function() {
         if (window.pageYOffset > 300) {
             backToTopButton.classList.add('active');
