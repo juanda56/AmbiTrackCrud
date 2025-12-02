@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reciclaje Inteligente - AmbiTrack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .game-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .trash-item {
+            width: 80px;
+            height: 80px;
+            margin: 10px;
+            cursor: grab;
+            transition: transform 0.2s;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        .trash-item:active {
+            cursor: grabbing;
+        }
+        
+        .bin {
+            width: 120px;
+            height: 150px;
+            margin: 10px;
+            border: 3px dashed #444;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 10px;
+            transition: all 0.3s;
+        }
+        
+        .bin.over {
+            border-color: #2ecc71;
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+        
+        .bin-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .score-container {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .trash-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 2rem 0;
+        }
+        
+        .bins-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .feedback {
+            min-height: 50px;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .correct {
+            color: #2ecc71;
+        }
+        
+        .incorrect {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-arrow-left me-2"></i>Volver
+            </a>
+            <span class="navbar-text text-white">
+                <i class="fas fa-recycle me-2"></i>Reciclaje Inteligente
+            </span>
+        </div>
+    </nav>
+
+    <div class="container game-container mt-5 pt-5">
+        <h2 class="text-center mb-4">Reciclaje Inteligente</h2>
+        <p class="text-center mb-4">Arrastra cada objeto al contenedor correcto para ganar puntos.</p>
+        
+        <div class="score-container text-center">
+            Puntuación: <span id="score">0</span> / <span id="total">0</span>
+        </div>
+        
+        <div class="feedback" id="feedback"></div>
+        
+        <div class="bins-container">
+            <div class="bin" id="bin-organic">
+                <i class="fas fa-apple-alt bin-icon"></i>
+                <div>Orgánico</div>
+            </div>
+            <div class="bin" id="bin-plastic">
+                <i class="fas fa-wine-bottle bin-icon"></i>
+                <div>Plástico</div>
+            </div>
+            <div class="bin" id="bin-paper">
+                <i class="fas fa-newspaper bin-icon"></i>
+                <div>Papel</div>
+            </div>
+            <div class="bin" id="bin-glass">
+                <i class="fas fa-wine-glass-alt bin-icon"></i>
+                <div>Vidrio</div>
+            </div>
+        </div>
+        
+        <h4 class="mt-5 mb-3">Arrastra los objetos:</h4>
+        <div class="trash-grid" id="trash-items">
+            <!-- Los elementos de basura se generarán con JavaScript -->
+        </div>
+        
+        <div class="text-center mt-4">
+            <button class="btn btn-success btn-lg" id="restart-btn">
+                <i class="fas fa-redo me-2"></i>Jugar de nuevo
+            </button>
+        </div>
+    </div>
+
+    <script src="../js/games/reciclaje.js"></script>
+</body>
+</html>

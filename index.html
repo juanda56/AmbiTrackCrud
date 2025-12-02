@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="es">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmbiTrack - Monitoreo Ambiental Inteligente</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Add Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-leaf me-2"></i>Ambi<b>Track</b>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicios">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cursos">Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Denuncias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Slider -->
+    <div class="hero-slider swiper" id="inicio">
+        <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12 text-center text-white">
+                            <h1 class="display-4 fw-bold mb-4">Monitoreo Ambiental en Tiempo Real</h1>
+                            <p class="lead mb-5">Soluciones tecnológicas para el monitoreo y análisis ambiental preciso.</p>
+                            <a href="#contacto" class="btn btn-success btn-lg px-4">
+                                <i class="fas fa-play me-2"></i>¡Empieza Ahora!
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12 text-center text-white">
+                            <h1 class="display-4 fw-bold mb-4">Tecnología Sostenible</h1>
+                            <p class="lead mb-5">Soluciones innovadoras para preservar nuestro planeta para las generaciones futuras.</p>
+                            <a href="#servicios" class="btn btn-outline-light btn-lg px-4">
+                                <i class="fas fa-leaf me-2"></i>Nuestros Servicios
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12 text-center text-white">
+                            <h1 class="display-4 fw-bold mb-4">Compromiso Ambiental</h1>
+                            <p class="lead mb-5">Trabajamos incansablemente por un mundo más limpio y saludable para todos.</p>
+                            <a href="#contacto" class="btn btn-success btn-lg px-4">
+                                <i class="fas fa-handshake me-2"></i>Únete a Nosotros
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        
+        <!-- Scroll Down Button -->
+        <div class="scroll-down">
+            <a href="#servicios" class="scroll-down-link">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="py-5" id="nosotros">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="text-success mb-4">Sobre Nosotros</h2>
+                    <p class="lead">En EcoVida, creemos en un futuro sostenible para todos.</p>
+                    <p>Somos un equipo apasionado por la conservación del medio ambiente, dedicado a crear soluciones innovadoras para los desafíos ambientales más urgentes de nuestro tiempo.</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <div class="me-3 text-success">
+                                    <i class="fas fa-recycle fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h5>Reciclaje Responsable</h5>
+                                    <p class="mb-0">Promovemos prácticas de reciclaje efectivas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <div class="me-3 text-success">
+                                    <i class="fas fa-solar-panel fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h5>Energía Limpia</h5>
+                                    <p class="mb-0">Impulsamos el uso de energías renovables.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Naturaleza" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-5 bg-light" id="servicios">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-success">Nuestros Servicios</h2>
+                <p class="lead">Soluciones ambientales para un futuro sostenible</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box bg-success bg-opacity-10 text-success rounded-circle mx-auto mb-4">
+                                <i class="fas fa-tree fa-2x"></i>
+                            </div>
+                            <h4>Reforestación</h4>
+                            <p>Programas de plantación de árboles y recuperación de áreas verdes urbanas y rurales.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box bg-success bg-opacity-10 text-success rounded-circle mx-auto mb-4">
+                                <i class="fas fa-trash-alt fa-2x"></i>
+                            </div>
+                            <h4>Gestión de Residuos</h4>
+                            <p>Soluciones integrales para el manejo y reducción de residuos sólidos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box bg-success bg-opacity-10 text-success rounded-circle mx-auto mb-4">
+                                <i class="fas fa-chalkboard-teacher fa-2x"></i>
+                            </div>
+                            <h4>Educación Ambiental</h4>
+                            <p>Talleres y capacitaciones para fomentar la conciencia ambiental.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cursos Section -->
+    <section class="py-5 bg-light" id="cursos">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-success">Cursos de Cuidado Ambiental</h2>
+                <p class="lead">Aprende a cuidar el medio ambiente con nuestros cursos gratuitos</p>
+                <div class="alert alert-success d-inline-flex align-items-center" role="alert">
+                    <i class="fas fa-gift me-2"></i>
+                    <div>¡Todos nuestros cursos son completamente gratuitos!</div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <!-- Curso 1 - Cambio Climático -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1617791160536-598cf32026fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1464&q=80" class="card-img-top" alt="Cambio Climático">
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-success">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-success bg-opacity-10 text-success"><i class="fas fa-fire me-1"></i> Cambio Climático</span>
+                                <span class="text-muted small"><i class="far fa-clock me-1"></i> 2 horas</span>
+                            </div>
+                            <h4 class="card-title">Curso de Cambio Climático</h4>
+                            <p class="card-text text-muted">Aprende sobre las causas, efectos y soluciones del cambio climático en este curso completo.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <div class="progress flex-grow-1 me-2" style="height: 6px; width: 80px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small class="text-muted">0%</small>
+                                </div>
+                                <a href="/cursos/cambio-climatico.html" class="btn btn-sm btn-outline-success">Comenzar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso 2 - Biodiversidad -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1470114716159-e389f8713d0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Biodiversidad">
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-primary">Popular</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-primary bg-opacity-10 text-primary"><i class="fas fa-leaf me-1"></i>Biodiversidad</span>
+                                <span class="text-muted small"><i class="far fa-clock me-1"></i> 1.5 horas</span>
+                            </div>
+                            <h4 class="card-title">Conservación de la Biodiversidad</h4>
+                            <p class="card-text text-muted">Descubre la importancia de la diversidad biológica y cómo puedes contribuir a su conservación.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <div class="progress flex-grow-1 me-2" style="height: 6px; width: 80px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small class="text-muted">0%</small>
+                                </div>
+                                <a href="/cursos/biodiversidad.html" class="btn btn-sm btn-outline-primary">Comenzar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso 3 - Próximamente -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1575408264798-b50b252663e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1453&q=80" class="card-img-top" alt="Próximamente" style="opacity: 0.7;">
+                            <div class="position-absolute top-50 start-50 translate-middle">
+                                <span class="badge bg-secondary">Próximamente</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-secondary bg-opacity-10 text-secondary"><i class="fas fa-recycle me-1"></i>Reciclaje</span>
+                                <span class="text-muted small"><i class="far fa-clock me-1"></i> Próximamente</span>
+                            </div>
+                            <h4 class="card-title text-muted">Reciclaje Inteligente</h4>
+                            <p class="card-text text-muted">Aprende las mejores prácticas para reducir, reutilizar y reciclar de manera efectiva.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <div class="progress flex-grow-1 me-2" style="height: 6px; width: 80px; background-color: #e9ecef;">
+                                        <div class="progress-bar bg-secondary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small class="text-muted">0%</small>
+                                </div>
+                                <button class="btn btn-sm btn-outline-secondary" disabled>Próximamente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <h4 class="mb-4">¿Por qué nuestros cursos son gratuitos?</h4>
+                <p class="lead mb-4">En AmbiTrack creemos que la educación ambiental debe ser accesible para todos. Nuestra misión es empoderar a las personas con el conocimiento necesario para proteger nuestro planeta.</p>
+                <a href="#contacto" class="btn btn-success btn-lg">
+                    <i class="fas fa-user-graduate me-2"></i>¡Comienza a aprender ahora!
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Denuncias Section -->
+    <section class="py-5 position-relative overflow-hidden" id="denuncias">
+        <div class="container position-relative">
+            <div class="text-center mb-5">
+                <div class="position-relative d-inline-block mb-3">
+                    <div class="icon-shape bg-soft-success text-success rounded-3 p-3 mb-3">
+                        <i class="fas fa-exclamation-triangle fa-2x"></i>
+                    </div>
+                </div>
+                <h2 class="fw-bold text-dark mb-3">Denuncias Ambientales</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">
+                    Reporta incidentes ambientales en tu comunidad y contribuye a la protección del medio ambiente. 
+                    Tu denuncia puede marcar la diferencia.
+                </p>
+            </div>
+            
+            <!-- Formulario de Denuncia -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10">
+                    <div class="card border-0 shadow-sm overflow-hidden">
+                        <div class="card-header bg-gradient-primary-to-secondary bg-opacity-10 py-3">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-shape bg-soft-success text-success rounded-3 p-2 me-3">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0 text-dark fw-bold" id="formTitle">Nueva Denuncia Ambiental</h4>
+                                    <p class="text-muted mb-0 small">Complete el formulario para reportar un incidente</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <form id="denunciaForm">
+                                <input type="hidden" id="denunciaId">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tipo" class="form-label">
+                                                <i class="fas fa-tag text-success me-2"></i>Tipo de Denuncia
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light border-end-0">
+                                                    <i class="fas fa-tag text-muted"></i>
+                                                </span>
+                                                <select class="form-select ps-3" id="tipo" required>
+                                                    <option value="" selected disabled>Seleccione un tipo</option>
+                                                    <option value="Contaminación del agua">Contaminación del agua</option>
+                                                    <option value="Contaminación del aire">Contaminación del aire</option>
+                                                    <option value="Deforestación">Deforestación</option>
+                                                    <option value="Manejo inadecuado de residuos">Manejo inadecuado de residuos</option>
+                                                    <option value="Caza o pesca ilegal">Caza o pesca ilegal</option>
+                                                    <option value="Otro">Otro</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="fecha" class="form-label">
+                                                <i class="far fa-calendar-alt text-success me-2"></i>Fecha del incidente
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light border-end-0">
+                                                    <i class="far fa-calendar text-muted"></i>
+                                                </span>
+                                                <input type="date" class="form-control ps-3" id="fecha" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="ubicacion" class="form-label">
+                                                <i class="fas fa-map-marker-alt text-success me-2"></i>Ubicación exacta
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light border-end-0">
+                                                    <i class="fas fa-map-marker-alt text-muted"></i>
+                                                </span>
+                                                <input type="text" class="form-control ps-3" id="ubicacion" placeholder="Ej: Calle Principal #123, Colonia, Ciudad" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="descripcion" class="form-label">
+                                                <i class="fas fa-align-left text-success me-2"></i>Descripción detallada
+                                            </label>
+                                            <textarea class="form-control" id="descripcion" rows="4" required 
+                                                placeholder="Describa el incidente con el mayor detalle posible, incluyendo hora aproximada, personas involucradas y cualquier otro detalle relevante."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="evidencia" class="form-label">
+                                                <i class="fas fa-camera text-success me-2"></i>Evidencia (opcional)
+                                            </label>
+                                            <div class="border rounded-3 p-3 text-center">
+                                                <div class="mb-2">
+                                                    <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                                    <h5 class="mb-1">Arrastra y suelta archivos aquí</h5>
+                                                    <p class="text-muted small mb-2">o</p>
+                                                </div>
+                                                <input class="d-none" type="file" id="evidencia" accept="image/*,video/*">
+                                                <label for="evidencia" class="btn btn-outline-success btn-sm mb-0">
+                                                    <i class="fas fa-folder-open me-2"></i>Seleccionar archivos
+                                                </label>
+                                                <div class="form-text mt-2">Formatos soportados: JPG, PNG, MP4 (máx. 5MB)</div>
+                                                <div id="nombreArchivo" class="small text-muted mt-2"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button type="button" class="btn btn-outline-secondary px-4" id="btnCancelar" style="display: none;">
+                                                <i class="fas fa-times me-2"></i>Cancelar
+                                            </button>
+                                            <button type="submit" class="btn btn-success px-4">
+                                                <i class="fas fa-save me-2"></i>Guardar Denuncia
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Listado de Denuncias -->
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm overflow-hidden">
+                        <div class="card-header bg-white border-bottom py-3">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+                                <div class="d-flex align-items-center mb-3 mb-md-0">
+                                    <div class="icon-shape bg-soft-success text-success rounded-3 p-2 me-3">
+                                        <i class="fas fa-list"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="mb-0 text-dark fw-bold">Denuncias Registradas</h4>
+                                        <p class="text-muted small mb-0">Lista de incidentes ambientales reportados</p>
+                                    </div>
+                                </div>
+                                <div class="w-100 w-md-auto mt-3 mt-md-0" style="max-width: 350px;">
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text bg-light border-end-0">
+                                            <i class="fas fa-search text-muted"></i>
+                                        </span>
+                                        <input type="text" id="buscarDenuncia" class="form-control ps-3" placeholder="Buscar denuncias...">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="fas fa-filter"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-nowrap align-middle mb-0">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th class="ps-4" style="width: 60px;">ID</th>
+                                            <th class="ps-3">Tipo</th>
+                                            <th>Fecha</th>
+                                            <th>Ubicación</th>
+                                            <th class="text-center">Estado</th>
+                                            <th class="text-end pe-4" style="width: 120px;">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaDenuncias">
+                                        <!-- Las denuncias se cargarán aquí dinámicamente -->
+                                        <tr>
+                                            <td colspan="6" class="text-center py-5">
+                                                <div class="py-4">
+                                                    <div class="mb-3">
+                                                        <i class="fas fa-inbox fa-4x text-muted opacity-25"></i>
+                                                    </div>
+                                                    <h5 class="text-muted mb-2">No hay denuncias registradas</h5>
+                                                    <p class="text-muted small mb-0">Comienza agregando una nueva denuncia</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top py-3">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                                <div class="text-muted small mb-2 mb-md-0">
+                                    Mostrando <span class="fw-semibold">1</span> a <span class="fw-semibold">10</span> de <span class="fw-semibold">0</span> entradas
+                                </div>
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination pagination-sm mb-0">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Siguiente</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-4 pt-0 text-center">
+                    <div class="icon-shape bg-soft-danger text-danger rounded-3 p-3 d-inline-flex mb-4">
+                        <i class="fas fa-exclamation-triangle fa-2x"></i>
+                    </div>
+                    <h4 class="mb-3">¿Está seguro?</h4>
+                    <p class="text-muted mb-4">¿Está seguro que desea eliminar esta denuncia? Esta acción no se puede deshacer y se perderán todos los datos asociados.</p>
+                    
+                    <div class="d-flex justify-content-center gap-3">
+                        <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-2"></i>Cancelar
+                        </button>
+                        <button type="button" class="btn btn-danger px-4" id="confirmDelete">
+                            <i class="fas fa-trash-alt me-2"></i>Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Visualización de Evidencia -->
+    <div class="modal fade" id="evidenciaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title">
+                        <i class="fas fa-image text-success me-2"></i>Evidencia de la Denuncia
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0 text-center">
+                    <div id="evidenciaContenido" class="p-4">
+                        <div class="d-flex justify-content-center align-items-center" style="min-height: 400px;">
+                            <div class="text-center">
+                                <i class="fas fa-image fa-4x text-muted opacity-25 mb-3"></i>
+                                <p class="text-muted">No hay evidencia para mostrar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 bg-light justify-content-between">
+                    <div class="text-muted small">
+                        <i class="fas fa-info-circle me-1"></i> Desliza para ver más imágenes
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-1"></i>Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Juegos Ambientales Section -->
+    <section class="py-5" id="juegos">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge bg-soft-success text-success mb-3">¡Nuevo!</span>
+                <h2 class="text-white mb-3">Juegos Ambientales</h2>
+                <p class="lead text-muted">Aprende sobre el cuidado del medio ambiente de forma divertida</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Juego 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card game-card h-100">
+                        <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" class="card-img-top" alt="Reciclaje Inteligente">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">Reciclaje Inteligente</h5>
+                                <span class="badge bg-success">Popular</span>
+                            </div>
+                            <p class="card-text">Aprende a separar correctamente los residuos en este divertido juego de clasificación. ¡Cada acierto suma puntos para salvar el planeta!</p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge">Reciclaje</span>
+                                <span class="badge">Educativo</span>
+                                <span class="badge">Fácil</span>
+                            </div>
+                            <div class="btn-container text-center">
+                                <a href="/games/reciclaje.html" class="btn btn-play btn-success" onclick="iniciarJuego('reciclaje')">
+                                    <i class="fas fa-play"></i> Jugar Ahora
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Juego 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card game-card h-100">
+                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Huella de Carbono">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">Huella de Carbono</h5>
+                                <span class="badge bg-info">Nuevo</span>
+                            </div>
+                            <p class="card-text">Descubre cómo reducir tu impacto ambiental tomando decisiones sostenibles en este juego de aventuras.</p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge">Sostenibilidad</span>
+                                <span class="badge">Aventura</span>
+                                <span class="badge">Intermedio</span>
+                            </div>
+                            <div class="btn-container text-center">
+                                <a href="/games/huella-carbono.html" class="btn btn-play btn-success" onclick="iniciarJuego('huella')">
+                                    <i class="fas fa-play"></i> Jugar Ahora
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Juego 3 -->
+                <div class="col-md-6 col-lg-4 mx-auto">
+                    <div class="card game-card h-100">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1432&q=80" class="card-img-top" alt="Eco Aventura">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">Eco Aventura</h5>
+                                <span class="badge bg-warning">Próximamente</span>
+                            </div>
+                            <p class="card-text">Embárcate en una emocionante aventura para salvar el ecosistema de la contaminación. Supera desafíos y aprende sobre ecología.</p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge">Aventura</span>
+                                <span class="badge">Educativo</span>
+                                <span class="badge">Desafío</span>
+                            </div>
+                            <div class="btn-container text-center">
+                                <button class="btn btn-play btn-secondary" disabled>
+                                    <i class="fas fa-lock"></i> Próximamente
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <div class="alert alert-info d-inline-flex align-items-center" role="alert">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <div>
+                        ¿Tienes ideas para nuevos juegos educativos? <a href="#contacto" class="alert-link">¡Contáctanos!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contacto">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="text-success mb-4">Contáctanos</h2>
+                    <p class="lead">¿Listo para unirte a nuestra misión?</p>
+                    <p>Completa el formulario y nos pondremos en contacto contigo lo antes posible.</p>
+                    <div class="mt-4">
+                        <div class="d-flex mb-3">
+                            <div class="me-3 text-success">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h6>Dirección</h6>
+                                <p class="mb-0">Calle Ecológica #123, Ciudad Verde</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="me-3 text-success">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h6>Teléfono</h6>
+                                <p class="mb-0">+1 234 567 890</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="me-3 text-success">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6>Email</h6>
+                                <p class="mb-0">info@ecovida.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h4 class="mb-4">Envíanos un mensaje</h4>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Nombre completo" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="tel" class="form-control" placeholder="Teléfono">
+                                </div>
+                                <div class="mb-3">
+                                    <select class="form-select">
+                                        <option selected disabled>¿Cómo podemos ayudarte?</option>
+                                        <option>Información sobre servicios</option>
+                                        <option>Voluntariado</option>
+                                        <option>Donaciones</option>
+                                        <option>Otro</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" rows="4" placeholder="Tu mensaje" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-success w-100">Enviar Mensaje</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-success">Ambi<b>Track</b></h5>
+                    <p>Tecnología avanzada para el monitoreo ambiental preciso.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#inicio" class="text-white-50 text-decoration-none">Inicio</a></li>
+                        <li><a href="#nosotros" class="text-white-50 text-decoration-none">Nosotros</a></li>
+                        <li><a href="#servicios" class="text-white-50 text-decoration-none">Servicios</a></li>
+                        <li><a href="#contacto" class="text-white-50 text-decoration-none">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Boletín Informativo</h5>
+                    <p>Suscríbete para recibir noticias y actualizaciones.</p>
+                    <form class="mb-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Tu correo">
+                            <button class="btn btn-success" type="submit">Suscribir</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 AmbiTrack. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="btn btn-success btn-lg back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Bootstrap JS with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    
+    <script>
+        // Inicializar Swiper
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.hero-slider', {
+                // Optional parameters
+                direction: 'horizontal',
+                loop: true,
+                effect: 'fade',
+                speed: 1000,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                
+                // If we need pagination
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                
+                // Navigation arrows
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                
+                // And if we need scrollbar
+                scrollbar: {
+                    el: '.swiper-scrollbar',
+                },
+                
+                // Efecto de transición
+                fadeEffect: {
+                    crossFade: true
+                },
+                
+                // Eventos
+                on: {
+                    init: function() {
+                        // Asegurarse de que el primer slide tenga la clase activa
+                        this.slides[this.activeIndex].classList.add('swiper-slide-active');
+                    },
+                    slideChange: function() {
+                        // Reiniciar animaciones al cambiar de slide
+                        const activeSlide = this.slides[this.activeIndex];
+                        const elements = activeSlide.querySelectorAll('h1, p, .btn');
+                        
+                        elements.forEach(el => {
+                            el.style.opacity = '0';
+                            el.style.transform = 'translateY(30px)';
+                            
+                            // Forzar un reflow para reiniciar la animación
+                            void el.offsetWidth;
+                            
+                            // Aplicar estilos para la animación
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                            el.style.transition = 'all 0.6s ease';
+                        });
+                    }
+                }
+            });
+            
+            // Smooth scroll para el botón de desplazamiento hacia abajo
+            document.querySelector('.scroll-down-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    
+    <script src="js/main.js"></script>
+    <script src="js/denuncias.js"></script>

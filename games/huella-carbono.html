@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huella de Carbono - AmbiTrack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .game-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .carbon-meter {
+            height: 30px;
+            background: #333;
+            border-radius: 15px;
+            margin: 2rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .carbon-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #2ecc71, #f1c40f, #e74c3c);
+            transition: width 0.5s ease;
+        }
+        
+        .carbon-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .question-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            background: rgba(46, 204, 113, 0.1);
+            border-color: rgba(46, 204, 113, 0.3);
+        }
+        
+        .option.selected {
+            background: rgba(46, 204, 113, 0.2);
+            border-color: var(--primary-color);
+        }
+        
+        .feedback {
+            min-height: 50px;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+            color: #2ecc71;
+        }
+        
+        .feedback.incorrect {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid #e74c3c;
+            color: #e74c3c;
+        }
+        
+        .result-container {
+            display: none;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-arrow-left me-2"></i>Volver
+            </a>
+            <span class="navbar-text text-white">
+                <i class="fas fa-smog me-2"></i>Huella de Carbono
+            </span>
+        </div>
+    </nav>
+
+    <div class="container game-container mt-5 pt-5">
+        <h2 class="text-center mb-4">Calcula tu Huella de Carbono</h2>
+        <p class="text-center mb-4">Responde las siguientes preguntas para conocer tu impacto ambiental.</p>
+        
+        <div class="progress-container mb-4">
+            <div class="d-flex justify-content-between mb-2">
+                <span>Progreso: <span id="current-question">1</span>/<span id="total-questions">0</span></span>
+                <span>Puntos: <span id="carbon-score">0</span></span>
+            </div>
+            <div class="progress">
+                <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+            </div>
+        </div>
+        
+        <div id="question-container">
+            <!-- Las preguntas se cargarán aquí dinámicamente -->
+        </div>
+        
+        <div class="d-flex justify-content-between mt-4">
+            <button id="prev-btn" class="btn btn-outline-light" disabled>
+                <i class="fas fa-arrow-left me-2"></i>Anterior
+            </button>
+            <button id="next-btn" class="btn btn-success">
+                Siguiente<i class="fas fa-arrow-right ms-2"></i>
+            </button>
+            <button id="finish-btn" class="btn btn-primary" style="display: none;">
+                Ver resultados<i class="fas fa-chart-bar ms-2"></i>
+            </button>
+        </div>
+        
+        <div id="feedback" class="feedback"></div>
+        
+        <div id="result-container" class="result-container">
+            <div class="result-icon"></div>
+            <h3 id="result-title"></h3>
+            <p id="result-description" class="lead"></p>
+            <p id="result-tips"></p>
+            <button id="restart-btn" class="btn btn-success mt-3">
+                <i class="fas fa-redo me-2"></i>Intentar de nuevo
+            </button>
+        </div>
+    </div>
+
+    <script src="../js/games/huella-carbono.js"></script>
+</body>
+</html>
