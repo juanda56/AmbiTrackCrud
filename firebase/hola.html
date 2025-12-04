@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD Ambiental con Firebase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <h1>Reportes ambientales</h1>
+
+  <!-- Autenticación -->
+  <div>
+    <button id="login-google">Iniciar sesión con Google</button>
+    <button id="login-github">Iniciar sesión con GitHub</button>
+    <button id="logout">Cerrar sesión</button>
+    <p id="user-info">No autenticado</p>
+  </div>
+
+  <!-- Mapa -->
+  <div id="map" style="height:300px;border:1px solid #ccc;margin:10px 0;">Mapa</div>
+
+  <!-- Formulario -->
+  <form id="reporte-form">
+    <label for="tipo">Tipo de reporte</label>
+    <select id="tipo" name="tipo">
+      <option value="Tala de árboles ilegales">Tala de árboles ilegales</option>
+      <option value="Incendios forestales">Incendios forestales</option>
+      <option value="Minería ilegal">Minería ilegal</option>
+      <option value="Otros">Otros</option>
+    </select>
+
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" name="descripcion" rows="4" placeholder="Describe el evento, fecha, evidencias, etc."></textarea>
+
+    <p id="ubicacion-status">Ubicación: pendiente</p>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button type="submit">Guardar reporte</button>
+      <button type="button" id="export-pdf">Descargar PDF</button>
+      <button type="button" id="export-word">Descargar Word</button>
+      <button type="button" id="export-excel">Descargar Excel</button>
+    </div>
+  </form>
+
+  <!-- Listado -->
+  <section>
+    <h2>Listado de reportes</h2>
+    <div id="lista"></div>
+  </section>
+
+  <!-- Lógica completa -->
+  <script type="module">
+    // Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { 
+      getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { 
+      getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, signOut, onAuthStateChanged 
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    // Configura tus credenciales Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAUEB0F38oZQAuIN2SY7uvkiFyB-Gvilm8",
+      authDomain: "ambitrack-reporting-system.firebaseapp.com",
+      projectId: "ambitrack-reporting-system",
+      storageBucket: "ambitrack-reporting-system.firebasestorage.app",
+      messagingSenderId: "1003055418894",
+      appId: "1:1003055418894:web:36fca84eda850a76e8f65f",
+      measurementId: "G-WX5T8DTDK6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    const colRef = collection(db, "reportes");
+
+    // Autenticación
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+    const userInfo = document.getElementById("user-info");
+    const loginGoogleBtn = document.getElementById("login-google");
+    const loginGithubBtn = document.getElementById("login-github");
+    const logoutBtn = document.getElementById("logout");
+    const reporteForm = document.getElementById("reporte-form");
+
+    // Función para actualizar la UI según el estado de autenticación
+    function updateUI(user) {
+      if (user) {
+        // Usuario autenticado
+        userInfo.textContent = `Bienvenido: ${user.displayName || user.email || 'Usuario'}`;
+        userInfo.style.color = 'green';
+        loginGoogleBtn.style.display = 'none';
+        loginGithubBtn.style.display = 'none';
+        logoutBtn.style.display = 'inline-block';
+        
+        // Habilitar formulario
+        if (reporteForm) {
+          const inputs = reporteForm.querySelectorAll('input, select, textarea, button');
+          inputs.forEach(input => {
+            if (!['login-google', 'login-github', 'logout'].includes(input.id)) {
+              input.disabled = false;
+            }
+          });
+        }
+      } else {
+        // Usuario no autenticado
+        userInfo.textContent = "No autenticado";
+        userInfo.style.color = 'red';
+        loginGoogleBtn.style.display = 'inline-block';
+        loginGithubBtn.style.display = 'inline-block';
+        logoutBtn.style.display = 'none';
+        
+        // Deshabilitar formulario
+        if (reporteForm) {
+          const inputs = reporteForm.querySelectorAll('input, select, textarea, button');
+          inputs.forEach(input => {
+            if (!['login-google', 'login-github', 'logout'].includes(input.id)) {
+              input.disabled = true;
+            }
+          });
+        }
+      }
+    }
+
+    // Manejadores de autenticación
+    async function handleGoogleSignIn() {
+      try {
+        loginGoogleBtn.disabled = true;
+        loginGoogleBtn.textContent = 'Iniciando...';
+        await signInWithPopup(auth, googleProvider);
+      } catch (error) {
+        console.error('Error en autenticación con Google:', error);
+        alert(`Error al iniciar sesión con Google: ${error.message || 'Error desconocido'}`);
+      } finally {
+        loginGoogleBtn.disabled = false;
+        loginGoogleBtn.textContent = 'Iniciar sesión con Google';
+      }
+    }
+
+    async function handleGithubSignIn() {
+      try {
+        loginGithubBtn.disabled = true;
+        loginGithubBtn.textContent = 'Iniciando...';
+        await signInWithPopup(auth, githubProvider);
+      } catch (error) {
+        console.error('Error en autenticación con GitHub:', error);
+        alert(`Error al iniciar sesión con GitHub: ${error.message || 'Error desconocido'}`);
+      } finally {
+        loginGithubBtn.disabled = false;
+        loginGithubBtn.textContent = 'Iniciar sesión con GitHub';
+      }
+    }
+
+    async function handleSignOut() {
+      try {
+        logoutBtn.disabled = true;
+        logoutBtn.textContent = 'Cerrando...';
+        await signOut(auth);
+      } catch (error) {
+        console.error('Error al cerrar sesión:', error);
+        alert(`Error al cerrar sesión: ${error.message || 'Error desconocido'}`);
+      } finally {
+        logoutBtn.disabled = false;
+        logoutBtn.textContent = 'Cerrar sesión';
+      }
+    }
+
+    // Asegurarse de que los elementos del DOM existen antes de añadir event listeners
+    if (loginGoogleBtn) {
+      loginGoogleBtn.addEventListener("click", handleGoogleSignIn);
+    } else {
+      console.error('No se encontró el botón de inicio de sesión con Google');
+    }
+
+    if (loginGithubBtn) {
+      loginGithubBtn.addEventListener("click", handleGithubSignIn);
+    } else {
+      console.error('No se encontró el botón de inicio de sesión con GitHub');
+    }
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", handleSignOut);
+    } else {
+      console.error('No se encontró el botón de cierre de sesión');
+    }
+
+    // Escuchar cambios en la autenticación
+    if (auth) {
+      onAuthStateChanged(auth, (user) => {
+        updateUI(user);
+      });
+    } else {
+      console.error('Error al inicializar la autenticación de Firebase');
+    }
+
+    // Inicializar UI
+    updateUI(auth ? auth.currentUser : null);
+    
+    // Mostrar un mensaje si hay un error de autenticación
+    if (!auth) {
+      userInfo.textContent = "Error al inicializar la autenticación";
+      userInfo.style.color = 'red';
+    }
+
+    // Geolocalización y Leaflet
+    let userLat = null, userLng = null, map = null, marker = null;
+    const ubicacionStatus = document.getElementById("ubicacion-status");
+    const leafletScript = document.createElement("script");
+    leafletScript.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+    leafletScript.onload = initGeo;
+    document.body.appendChild(leafletScript);
+
+    function initGeo() {
+      if (!("geolocation" in navigator)) {
+        ubicacionStatus.textContent = "Ubicación no disponible.";
+        initMap(4.60971, -74.08175, false);
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          userLat = pos.coords.latitude;
+          userLng = pos.coords.longitude;
+          ubicacionStatus.textContent = `Ubicación: ${userLat.toFixed(5)}, ${userLng.toFixed(5)}`;
+          initMap(userLat, userLng, true);
+        },
+        (err) => {
+          ubicacionStatus.textContent = "Error de ubicación: " + err.message;
+          initMap(4.60971, -74.08175, false);
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
+      );
+    }
+
+    function initMap(lat, lng, placeMarker) {
+      // L viene de Leaflet
+      map = L.map("map").setView([lat, lng], 13);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "&copy; OpenStreetMap" }).addTo(map);
+      if (placeMarker) { marker = L.marker([lat, lng]).addTo(map).bindPopup("Tu ubicación").openPopup(); }
+      map.on("click", (e) => {
+        userLat = e.latlng.lat; userLng = e.latlng.lng;
+        ubicacionStatus.textContent = `Ubicación: ${userLat.toFixed(5)}, ${userLng.toFixed(5)}`;
+        if (!marker) marker = L.marker([userLat, userLng]).addTo(map);
+        marker.setLatLng([userLat, userLng]).bindPopup("Ubicación seleccionada").openPopup();
+      });
+    }
+
+    // Guardar reporte
+    const form = document.getElementById("reporte-form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const tipo = document.getElementById("tipo").value;
+      const descripcion = document.getElementById("descripcion").value.trim();
+      if (!descripcion) { alert("Agrega una descripción."); return; }
+      if (userLat == null || userLng == null) { alert("Ubicación no disponible."); return; }
+      const user = auth.currentUser;
+      if (!user) { alert("Debes iniciar sesión."); return; }
+
+      await addDoc(colRef, {
+        tipo,
+        descripcion,
+        lat: userLat,
+        lng: userLng,
+        uid: user.uid,
+        email: user.email || null,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      });
+      document.getElementById("descripcion").value = "";
+    });
+
+    // Listado y CRUD (editar/eliminar)
+    const lista = document.getElementById("lista");
+    onSnapshot(colRef, (snap) => {
+      lista.innerHTML = "";
+      if (snap.empty) { lista.innerHTML = "<p>No hay reportes aún.</p>"; return; }
+      snap.forEach((d) => {
+        const r = { id: d.id, ...d.data() };
+        const card = document.createElement("div");
+        card.style = "border:1px solid #ccc;padding:8px;margin:6px 0;";
+        card.innerHTML = `
+          <div><strong>${r.tipo}</strong></div>
+          <div>${r.descripcion}</div>
+          <div>Ubicación: ${Number(r.lat).toFixed(5)}, ${Number(r.lng).toFixed(5)}</div>
+          <div>Autor: ${r.email || "Desconocido"}</div>
+          <div style="display:flex;gap:6px;margin-top:6px;">
+            <button data-action="edit">Editar</button>
+            <button data-action="delete">Eliminar</button>
+          </div>
+        `;
+        // Editar (opcionalmente podrías validar que el autor sea el mismo user.uid)
+        card.querySelector("[data-action='edit']").addEventListener("click", async () => {
+          const nueva = prompt("Nueva descripción:", r.descripcion || "");
+          if (nueva == null) return;
+          await updateDoc(doc(db, "reportes", r.id), { descripcion: nueva.trim(), updatedAt: new Date() });
+        });
+        // Eliminar
+        card.querySelector("[data-action='delete']").addEventListener("click", async () => {
+          if (!confirm("¿Eliminar este reporte?")) return;
+          await deleteDoc(doc(db, "reportes", r.id));
+        });
+        lista.appendChild(card);
+      });
+    });
+
+    // Exportaciones
+    // Cargar librerías por CDN
+    const jsPDFScript = document.createElement("script");
+    jsPDFScript.src = "https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js";
+    document.body.appendChild(jsPDFScript);
+
+    const autoTableScript = document.createElement("script");
+    autoTableScript.src = "https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js";
+    document.body.appendChild(autoTableScript);
+
+    const xlsxScript = document.createElement("script");
+    xlsxScript.src = "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";
+    document.body.appendChild(xlsxScript);
+
+    function getReportesFromDOM() {
+      const cards = [...document.querySelectorAll("#lista > div")];
+      return cards.map((card) => {
+        const tipo = card.querySelector("strong").textContent;
+        const descripcion = card.querySelectorAll("div")[1].textContent;
+        const ubTxt = card.querySelectorAll("div")[2].textContent.replace("Ubicación: ", "");
+        return { tipo, descripcion, ubicacion: ubTxt };
+      });
+    }
+
+    // PDF
+    document.getElementById("export-pdf").addEventListener("click", () => {
+      const rows = getReportesFromDOM().map(r => [r.tipo, r.descripcion, r.ubicacion]);
+      if (rows.length === 0) { alert("No hay reportes para exportar."); return; }
+      const { jsPDF } = window.jspdf || {};
+      if (!jsPDF || !window.jspdf || !window.jspdf.jsPDF) { alert("Cargando librería PDF, intenta de nuevo."); return; }
+      const doc = new jsPDF();
+      doc.setFontSize(14);
+      doc.text("Reportes ambientales", 14, 16);
+      doc.autoTable({ head: [["Tipo", "Descripción", "Ubicación"]], body: rows, startY: 22 });
+      doc.save("reportes.pdf");
+    });
+
+    // Word (HTML → .doc)
+    function exportWordSimple(reportes) {
+      let html = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office'
+              xmlns:w='urn:schemas-microsoft-com:office:word'
+              xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset="utf-8"><title>Reportes</title></head>
+        <body>
+          <h2>Reportes ambientales</h2>
+          <table border="1" style="border-collapse:collapse;">
+            <tr><th>Tipo</th><th>Descripción</th><th>Ubicación</th></tr>
+      `;
+      reportes.forEach(r => {
+        html += `<tr><td>${r.tipo}</td><td>${r.descripcion}</td><td>${r.ubicacion}</td></tr>`;
+      });
+      html += `</table></body></html>`;
+      const blob = new Blob([html], { type: "application/msword" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "reportes.doc"; a.click();
+      URL.revokeObjectURL(url);
+    }
+    document.getElementById("export-word").addEventListener("click", () => {
+      const data = getReportesFromDOM();
+      if (data.length === 0) { alert("No hay reportes para exportar."); return; }
+      exportWordSimple(data);
+    });
+
+    // Excel
+    document.getElementById("export-excel").addEventListener("click", () => {
+      const data = getReportesFromDOM();
+      if (data.length === 0) { alert("No hay reportes para exportar."); return; }
+      if (!window.XLSX) { alert("Cargando librería Excel, intenta de nuevo."); return; }
+      const ws = XLSX.utils.json_to_sheet(data);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Reportes");
+      XLSX.writeFile(wb, "reportes.xlsx");
+    });
+  </script>
+
+  <!-- Sugerencia de reglas Firestore para desarrollo (no producción):
+  rules_version = '2';
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /reportes/{doc} {
+        allow read, write: if true;
+      }
+    }
+  }
+  En producción: usa Auth y verifica que request.auth.uid == resource.data.uid para editar/eliminar.
+  -->
+</body>
+</html>
+
+
+

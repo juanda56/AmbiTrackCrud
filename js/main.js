@@ -8,100 +8,96 @@ window.addEventListener('scroll', function() {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const backToTopButton = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('active');
-        } else {
-            backToTopButton.classList.remove('active');
-        }
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const headerOffset = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+// document.addEventListener('DOMContentLoaded', function() {
+//     const backToTopButton = document.getElementById('backToTop');
+//     window.addEventListener('scroll', function() {
+//         if (window.pageYOffset > 300) {
+//             backToTopButton.classList.add('active');
+//         } else {
+//             backToTopButton.classList.remove('active');
+//         }
+//     });
+//     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+//         anchor.addEventListener('click', function (e) {
+//             e.preventDefault();
+//             const targetId = this.getAttribute('href');
+//             if (targetId === '#') return;
+//             const targetElement = document.querySelector(targetId);
+//             if (targetElement) {
+//                 const headerOffset = 80;
+//                 const elementPosition = targetElement.getBoundingClientRect().top;
+//                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+//                 window.scrollTo({
+//                     top: offsetPosition,
+//                     behavior: 'smooth'
+//                 });
                 
-                // Close mobile menu if open
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                if (navbarCollapse.classList.contains('show')) {
-                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-                    bsCollapse.hide();
-                }
-            }
-        });
-    });
+//                 // Close mobile menu if open
+//                 const navbarCollapse = document.querySelector('.navbar-collapse');
+//                 if (navbarCollapse.classList.contains('show')) {
+//                     const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+//                     bsCollapse.hide();
+//                 }
+//             }
+//         });
+//     });
     
-    // Add animation to elements when they come into view
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.card, .section-title, .animate-on-scroll');
+//     // Add animation to elements when they come into view
+//     const animateOnScroll = function() {
+//         const elements = document.querySelectorAll('.card, .section-title, .animate-on-scroll');
         
-        elements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
+//         elements.forEach(element => {
+//             const elementTop = element.getBoundingClientRect().top;
+//             const windowHeight = window.innerHeight;
             
-            if (elementTop < windowHeight - 100) {
-                element.classList.add('animate-fadeInUp');
-            }
-        });
-    };
+//             if (elementTop < windowHeight - 100) {
+//                 element.classList.add('animate-fadeInUp');
+//             }
+//         });
+//     };
     
-    // Initial check on page load
-    animateOnScroll();
+//     // Initial check on page load
+//     animateOnScroll();
     
-    // Check on scroll
-    window.addEventListener('scroll', animateOnScroll);
+//     // Check on scroll
+//     window.addEventListener('scroll', animateOnScroll);
     
-    // Form submission handling
-    const contactForm = document.querySelector('form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+//     // Form submission handling
+//     const contactForm = document.querySelector('form');
+//     if (contactForm) {
+//         contactForm.addEventListener('submit', function(e) {
+//             e.preventDefault();
             
-            // Get form data
-            const formData = new FormData(this);
-            const formObject = {};
-            formData.forEach((value, key) => {
-                formObject[key] = value;
-            });
+//             // Get form data
+//             const formData = new FormData(this);
+//             const formObject = {};
+//             formData.forEach((value, key) => {
+//                 formObject[key] = value;
+//             });
             
-            // Here you would typically send the form data to a server
-            console.log('Form submitted:', formObject);
+//             // Here you would typically send the form data to a server
+//             console.log('Form submitted:', formObject);
             
-            // Show success message
-            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-            this.reset();
-        });
-    }
+//             // Show success message
+//             alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+//             this.reset();
+//         });
+//     }
     
-    // Newsletter subscription
-    const newsletterForm = document.querySelector('footer form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const emailInput = this.querySelector('input[type="email"]');
-            if (emailInput && emailInput.value) {
-                alert(`¡Gracias por suscribirte con el correo: ${emailInput.value}!`);
-                emailInput.value = '';
-            }
-        });
-    }
-});
+//     // Newsletter subscription
+//     const newsletterForm = document.querySelector('footer form');
+//     if (newsletterForm) {
+//         newsletterForm.addEventListener('submit', function(e) {
+//             e.preventDefault();
+//             const emailInput = this.querySelector('input[type="email"]');
+//             if (emailInput && emailInput.value) {
+//                 alert(`¡Gracias por suscribirte con el correo: ${emailInput.value}!`);
+//                 emailInput.value = '';
+//             }
+//         });
+//     }
+// });
 
 // Add active class to current nav link
 const navLinks = document.querySelectorAll('.nav-link');
