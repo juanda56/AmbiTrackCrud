@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CRUD Ambiental</title>
+  </head>
+  <body>
+    <h1>Reportes ambientales</h1>
+    <div id="map">Aquí irá el mapa</div>
+    <form id="reporte-form">
+      <label for="tipo">Tipo de reporte</label>
+      <select id="tipo" name="tipo">
+        <option value="tala">Tala de árboles ilegales</option>
+        <option value="incendios">Incendios forestales</option>
+        <option value="mineria">Minería ilegal</option>
+        <option value="otros">Otros</option>
+      </select>
+      <label for="descripcion">Descripción del reporte</label>
+      <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+      <p id="ubicacion-status">Ubicación: pendiente</p>
+      <button type="submit">Guardar reporte</button>
+      <button type="button" id="export-pdf">Descargar PDF</button>
+      <button type="button" id="export-word">Descargar Word</button>
+      <button type="button" id="export-excel">Descargar Excel</button>
+    </form>
+    <section>
+      <h2>Listado de reportes</h2>
+      <div id="lista"></div>
+    </section>
+  </body>
+  <script src="./firebase.js" type="module"></script>
+</html>
